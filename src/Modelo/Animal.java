@@ -15,7 +15,7 @@ public class Animal {
     private String raca;
 
     @Column
-    private String cor;
+    private String especie;
 
     @Column
     private String idade;
@@ -50,12 +50,12 @@ public class Animal {
         this.raca = raca;
     }
 
-    public String getCor() {
-        return cor;
+    public String getEspecie() {
+        return especie;
     }
 
-    public void setCor(String cor) {
-        this.cor = cor;
+    public void setEspecie(String especie) {
+        this.especie = especie;
     }
 
     public String getIdade() {

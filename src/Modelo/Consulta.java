@@ -21,6 +21,17 @@ public class Consulta {
     @ManyToOne(fetch = FetchType.EAGER)
     private Veterinario veterinario;
 
+    @Column
+    private Boolean foiAtendido;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Date getData() {
         return data;
     }
@@ -51,5 +62,13 @@ public class Consulta {
 
     public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;
+    }
+
+    public Boolean getFoiAtendido() {
+        return foiAtendido;
+    }
+
+    public void setFoiAtendido(Boolean foiAtendido) {
+        this.foiAtendido = foiAtendido;
     }
 }

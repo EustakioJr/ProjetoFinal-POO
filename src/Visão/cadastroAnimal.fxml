@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerCadastroAnimal">
+    <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+        <Menu fx:id="menuHome" mnemonicParsing="false" onAction="#irHome" text="Home"/>
+        <Menu fx:id="botaoLogout" mnemonicParsing="false" onAction="#logout" text="Logout"/>
+    </MenuBar>
+    <Label layoutX="14.0" layoutY="27.0" prefHeight="35.0" prefWidth="177.0" text="Cadastro Animal">
+        <font>
+            <Font size="19.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="campoNome" layoutX="57.0" layoutY="126.0" prefHeight="25.0" prefWidth="228.0"/>
+    <TextField fx:id="campoRaca" layoutX="57.0" layoutY="178.0" prefHeight="25.0" prefWidth="228.0"/>
+    <TextField fx:id="campoCor" layoutX="316.0" layoutY="125.0" prefHeight="25.0" prefWidth="228.0"/>
+    <TextField fx:id="campoPeso" layoutX="57.0" layoutY="232.0" prefHeight="25.0" prefWidth="228.0"/>
+    <Button fx:id="botaoCadastrar" layoutX="221.0" layoutY="292.0" mnemonicParsing="false" onAction="#cadastrar"
+            prefHeight="43.0" prefWidth="128.0" text="Cadastrar">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Button>
+    <Label layoutX="57.0" layoutY="103.0" prefHeight="18.0" prefWidth="49.0" text="Nome:">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+    <Label layoutX="57.0" layoutY="157.0" prefHeight="18.0" prefWidth="49.0" text="Raça:">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+    <Label layoutX="316.0" layoutY="102.0" prefHeight="21.0" prefWidth="63.0" text="Especie:">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+    <Label layoutX="57.0" layoutY="211.0" prefHeight="18.0" prefWidth="49.0" text="Peso:">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+    <Label layoutX="316.0" layoutY="155.0" prefHeight="18.0" prefWidth="49.0" text="Idade:">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+    <PasswordField fx:id="campoIdade" layoutX="316.0" layoutY="177.0" prefHeight="25.0" prefWidth="228.0"/>
+    <Label layoutX="316.0" layoutY="211.0" prefHeight="21.0" prefWidth="103.0" text="CPF do Dono:">
+        <font>
+          <Font size="15.0"/>
+        </font>
+    </Label>
+    <PasswordField fx:id="campoDono" layoutX="316.0" layoutY="232.0" prefHeight="25.0" prefWidth="228.0"/>
+</AnchorPane>

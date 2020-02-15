@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 
-public class ControllerTelaHome {
+public class ControllerTelaCadastro {
 
     @FXML
-    private Button botaoCadastrar;
+    private Button botaoVet;
 
     @FXML
     private Menu menuHome;
@@ -17,7 +17,7 @@ public class ControllerTelaHome {
     private Menu botaoLogout;
 
     @FXML
-    private Button botaoFuncionarios;
+    private Button botaoRecep;
 
     @FXML
     private Button botaoClientes;
@@ -29,27 +29,27 @@ public class ControllerTelaHome {
     private Button botaoConsultas;
 
     @FXML
-    void irAnimal(ActionEvent event) {
+    void irCadastroAnimal(ActionEvent event) {
 
     }
 
     @FXML
-    void irCadastro(ActionEvent event) {
+    void irCadastroCliente(ActionEvent event) {
 
     }
 
     @FXML
-    void irCliente(ActionEvent event) {
+    void irCadastroConsulta(ActionEvent event) {
 
     }
 
     @FXML
-    void irConsulta(ActionEvent event) {
+    void irCadastroRecep(ActionEvent event) {
 
     }
 
     @FXML
-    void irFuncionario(ActionEvent event) {
+    void irCadastroVet(ActionEvent event) {
 
     }
 
@@ -62,4 +62,5 @@ public class ControllerTelaHome {
     void logout(ActionEvent event) {
 
     }
+
 }
