@@ -30,28 +30,24 @@ public class ControllerTelaCadastro {
 
     @FXML
     void irCadastroAnimal(ActionEvent event) {
-
+        Visao.App.trocaTela("cadastroAnimal");
     }
 
     @FXML
     void irCadastroCliente(ActionEvent event) {
-
+        Visao.App.trocaTela("cadastroCliente");
     }
 
     @FXML
-    void irCadastroConsulta(ActionEvent event) {
-
-    }
+    void irCadastroConsulta(ActionEvent event) {Visao.App.trocaTela("cadastroConsulta");    }
 
     @FXML
     void irCadastroRecep(ActionEvent event) {
-        System.out.println(UsuarioLogado.getInstance().isEhAdm());
+        Visao.App.trocaTela("cadastroRecep");
     }
 
     @FXML
-    void irCadastroVet(ActionEvent event) {
-        System.out.println(UsuarioLogado.getInstance().isEhAdm());
-    }
+    void irCadastroVet(ActionEvent event) { Visao.App.trocaTela("cadastroVet");    }
 
     @FXML
     void irHome(ActionEvent event) {

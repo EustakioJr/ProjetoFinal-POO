@@ -29,7 +29,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <TableView fx:id="tabela" prefHeight="293.0" prefWidth="374.0">
                 <columns>
-                    <TableColumn fx:id="nomeTabela" prefWidth="90.0" text="Data" />
+                    <TableColumn fx:id="dataTabela" prefWidth="90.0" text="Data" />
                     <TableColumn fx:id="animalTabela" prefWidth="83.0" text="ID do Animal" />
                <TableColumn fx:id="vetTabela" prefWidth="117.0" text="Veterinario" />
                <TableColumn fx:id="atendidoTabela" prefWidth="83.0" text="Foi Atendido" />
@@ -37,9 +37,9 @@
             </TableView>
         </AnchorPane>
     </SplitPane>
-    <ComboBox layoutX="392.0" layoutY="70.0" prefHeight="25.0" prefWidth="94.0" />
+    <ComboBox fx:id="campoAtendido" layoutX="392.0" layoutY="70.0" prefHeight="25.0" prefWidth="94.0" />
     <Label layoutX="314.0" layoutY="74.0" text="Foi Atendido:" />
-    <DatePicker layoutX="120.0" layoutY="70.0" />
+    <DatePicker fx:id="campoData" layoutX="120.0" layoutY="70.0" />
     <Label layoutX="275.0" layoutY="38.0" text="CRMV do Veterinario:" />
-    <TextField fx:id="campoNome1" layoutX="392.0" layoutY="34.0" prefHeight="25.0" prefWidth="191.0" />
+    <TextField fx:id="campoCrmv" layoutX="392.0" layoutY="34.0" prefHeight="25.0" prefWidth="191.0" />
 </AnchorPane>

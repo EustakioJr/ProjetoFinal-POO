@@ -25,7 +25,7 @@ public class Animal {
     private String idade;
 
     @Column
-    private Float peso;
+    private String peso;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Cliente dono;
@@ -70,11 +70,11 @@ public class Animal {
         this.idade = idade;
     }
 
-    public Float getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(Float peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 

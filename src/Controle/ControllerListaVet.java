@@ -1,6 +1,6 @@
 package Controle;
 
-import Modelo.Recepcionista;
+import Modelo.Veterinario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControllerListaFuncionario {
+public class ControllerListaVet {
 
     @FXML
     private Menu menuHome;
@@ -39,6 +39,9 @@ public class ControllerListaFuncionario {
     private TextField cpfFunc;
 
     @FXML
+    private TextField crmvFunc;
+
+    @FXML
     private Button botaoAtualiza;
 
     @FXML
@@ -54,13 +57,17 @@ public class ControllerListaFuncionario {
     private TextField nomeFunc;
 
     @FXML
-    private TableView<Recepcionista> tabela;
+    private TableView<Veterinario> tabela;
 
     @FXML
-    private TableColumn<Recepcionista, String> nomeTabela;
+    private TableColumn<Veterinario, String> nomeTabela;
 
     @FXML
-    private TableColumn<Recepcionista, String> cpfTabela;
+    private TableColumn<Veterinario, String> cpfTabela;
+
+    @FXML
+    private TableColumn<Veterinario, String> crmvTabela;
+
 
     @FXML
     void atualiza(ActionEvent event) {
@@ -79,46 +86,48 @@ public class ControllerListaFuncionario {
 
     @FXML
     void irHome(ActionEvent event) {
-        Visao.App.trocaTela("home");
+
     }
 
     @FXML
     void logout(ActionEvent event) {
-        Visao.App.trocaTela("inicio");
-    }
 
-    private List<Recepcionista> listRecep;
-    private ObservableList<Recepcionista> observableListRecep;
+    }
 
     public void initialize(){
-        carregarTableViewRecepcionista();
-        tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemRecep(newValue));
+        carregarTableViewVeterinario();
+        tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemVet(newValue));
     }
 
-    public void carregarTableViewRecepcionista(){
+    private List<Veterinario> listVet;
+    private ObservableList<Veterinario> observableListVet;
+
+    public void carregarTableViewVeterinario(){
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
         nomeTabela.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cpfTabela.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        crmvTabela.setCellValueFactory(new PropertyValueFactory<>("crmv"));
 
+        listVet = new ArrayList<>(em.createQuery("SELECT v FROM Veterinario v", Veterinario.class).getResultList());
 
-        listRecep = new ArrayList<>(em.createQuery("SELECT r FROM Recepcionista r", Recepcionista.class).getResultList());
-
-        observableListRecep = FXCollections.observableArrayList((listRecep));
-        tabela.setItems(observableListRecep);
+        observableListVet = FXCollections.observableArrayList((listVet));
+        tabela.setItems(observableListVet);
         em.close();
     }
 
-    public void selectItemRecep(Recepcionista Recep) {
-        if (Recep != null) {
-            nomeFunc.setText(Recep.getNome());
-            enderecoFunc.setText(Recep.getEndereco());
-            telefoneFunc.setText(Recep.getTelefone());
-            cpfFunc.setText(Recep.getCpf());
-        } else {
+    public void selectItemVet(Veterinario vet){
+        if (vet != null){
+            nomeFunc.setText(vet.getNome());
+            enderecoFunc.setText(vet.getEndereco());
+            telefoneFunc.setText(vet.getTelefone());
+            crmvFunc.setText(vet.getCrmv());
+            cpfFunc.setText(vet.getCpf());
+        }else{
             nomeFunc.setText("");
             enderecoFunc.setText("");
             telefoneFunc.setText("");
+            crmvFunc.setText("");
             cpfFunc.setText("");
         }
     }

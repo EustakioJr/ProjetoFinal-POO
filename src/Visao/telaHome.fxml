@@ -4,30 +4,21 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerTelaHome">
-    <Button fx:id="botaoCadastrar" layoutX="152.0" layoutY="176.0" mnemonicParsing="false" onAction="#irCadastro"
-            prefHeight="25.0" prefWidth="106.0" text="Cadastrar"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerTelaHome">
+    <Button fx:id="botaoCadastrar" layoutX="99.0" layoutY="176.0" mnemonicParsing="false" onAction="#irCadastro" prefHeight="25.0" prefWidth="106.0" text="Cadastrar" />
     <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
-        <Menu fx:id="menuHome" mnemonicParsing="false" onAction="#irHome" text="Home"/>
-        <Menu fx:id="botaoLogout" mnemonicParsing="false" onAction="#logout" text="Logout"/>
+        <Menu fx:id="menuHome" mnemonicParsing="false" onAction="#irHome" text="Home" />
+        <Menu fx:id="botaoLogout" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </MenuBar>
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="152.0" layoutY="72.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <Button fx:id="botaoFuncionarios" layoutX="342.0" layoutY="176.0" mnemonicParsing="false" onAction="#irFuncionario"
-            prefHeight="25.0" prefWidth="106.0" text="Funcionarios"/>
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="342.0" layoutY="72.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <Button fx:id="botaoClientes" layoutX="99.0" layoutY="329.0" mnemonicParsing="false" onAction="#irCliente"
-            prefHeight="25.0" prefWidth="106.0" text="Clientes"/>
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="225.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <Button fx:id="botaoAnimais" layoutX="247.0" layoutY="329.0" mnemonicParsing="false" onAction="#irAnimal"
-            prefHeight="25.0" prefWidth="106.0" text="Animais"/>
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="225.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <Button fx:id="botaoConsultas" layoutX="395.0" layoutY="329.0" mnemonicParsing="false" onAction="#irConsulta"
-            prefHeight="25.0" prefWidth="106.0" text="Consultas"/>
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="225.0" pickOnBounds="true"
-               preserveRatio="true"/>
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botaoFuncionarios" layoutX="247.0" layoutY="176.0" mnemonicParsing="false" onAction="#irFuncionario" prefHeight="25.0" prefWidth="106.0" text="Recepcionistas" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botaoClientes" layoutX="99.0" layoutY="329.0" mnemonicParsing="false" onAction="#irCliente" prefHeight="25.0" prefWidth="106.0" text="Clientes" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botaoAnimais" layoutX="247.0" layoutY="329.0" mnemonicParsing="false" onAction="#irAnimal" prefHeight="25.0" prefWidth="106.0" text="Animais" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="botaoConsultas" layoutX="395.0" layoutY="329.0" mnemonicParsing="false" onAction="#irConsulta" prefHeight="25.0" prefWidth="106.0" text="Consultas" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+   <Button fx:id="botaoVet" layoutX="395.0" layoutY="176.0" mnemonicParsing="false" onAction="#irVet" prefHeight="25.0" prefWidth="106.0" text="Veterinarios" />
+   <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>

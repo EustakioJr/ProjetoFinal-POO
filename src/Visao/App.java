@@ -13,6 +13,7 @@ public class App extends Application {
     private static Scene telaInicio;
     private static Scene telaHome;
     private static Scene telaCadastro;
+    private static Scene listaVet;
     private static Scene listaFuncionario;
     private static Scene listaConsulta;
     private static Scene listaCliente;
@@ -37,6 +38,9 @@ public class App extends Application {
 
         Parent fxmlTelaCadastro = FXMLLoader.load(getClass().getResource("telaCadastro.fxml"));
         telaCadastro = new Scene(fxmlTelaCadastro, 600, 400);
+
+        Parent fxmlListaVet = FXMLLoader.load(getClass().getResource("ListaVet.fxml"));
+        listaVet = new Scene(fxmlListaVet, 600, 400);
 
         Parent fxmlListaFuncionario = FXMLLoader.load(getClass().getResource("ListaFuncionario.fxml"));
         listaFuncionario = new Scene(fxmlListaFuncionario, 600, 400);
@@ -81,6 +85,9 @@ public class App extends Application {
                 break;
             case "cadastro":
                 stage.setScene(telaCadastro);
+                break;
+            case "listaVet":
+                stage.setScene(listaVet);
                 break;
             case "listaFunc":
                 stage.setScene(listaFuncionario);

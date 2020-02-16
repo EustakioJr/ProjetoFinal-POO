@@ -1,18 +1,17 @@
 package Controle;
 
+import Modelo.Animal;
+import Modelo.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+
 
 public class ControllerCadastroAnimal {
 
@@ -29,7 +28,7 @@ public class ControllerCadastroAnimal {
     private TextField campoRaca;
 
     @FXML
-    private TextField campoCor;
+    private TextField campoEspecie;
 
     @FXML
     private TextField campoPeso;
@@ -38,14 +37,30 @@ public class ControllerCadastroAnimal {
     private Button botaoCadastrar;
 
     @FXML
-    private PasswordField campoIdade;
+    private TextField campoIdade;
 
     @FXML
-    private PasswordField campoDono;
+    private TextField campoDono;
 
     @FXML
     void cadastrar(ActionEvent event) {
+        EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
 
+        em.getTransaction().begin();
+        Animal novo = new Animal();
+        novo.setNome(campoNome.getText());
+        novo.setEspecie(campoEspecie.getText());
+        novo.setRaca(campoRaca.getText());
+        novo.setPeso(campoPeso.getText());
+        novo.setIdade(campoIdade.getText());
+        novo.setDono(em.createQuery("SELECT c FROM Cliente c WHERE c.cpf = :dono", Cliente.class)
+                .setParameter("dono", campoDono.getText())
+                .getSingleResult());
+
+        em.persist(novo);
+        em.getTransaction().commit();
+
+        em.close();
     }
 
     @FXML

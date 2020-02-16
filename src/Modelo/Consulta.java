@@ -3,14 +3,7 @@ package Modelo;
 import javax.persistence.*;
 import java.util.Date;
 
-@NamedQueries({
-        @NamedQuery(name="Consulta.Filtar", query = "SELECT c " +
-                "FROM Consulta c " +
-                "WHERE c.animal.id = :idAnimal " +
-                "AND c.veterinario.crmv = :crmvVeterinario " +
-                "AND c.data = :data " +
-                "AND c.foiAtendido = :atendido")
-})
+
 @Entity
 public class Consulta {
     @Id
@@ -78,5 +71,15 @@ public class Consulta {
 
     public void setFoiAtendido(Boolean foiAtendido) {
         this.foiAtendido = foiAtendido;
+    }
+
+    @Transient
+    public Integer getIdAnimal() {
+        return animal.getId();
+    }
+
+    @Transient
+    public String getCrmvVet(){
+        return veterinario.getCrmv();
     }
 }

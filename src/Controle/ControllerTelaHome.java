@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 
-
-
 public class ControllerTelaHome {
 
     @FXML
@@ -31,37 +29,46 @@ public class ControllerTelaHome {
     private Button botaoConsultas;
 
     @FXML
-    void irAnimal(ActionEvent event) {
+    private Button botaoVet;
 
+    @FXML
+    void irAnimal(ActionEvent event) {
+        Visao.App.trocaTela("listaAnimal");
     }
 
     @FXML
     void irCadastro(ActionEvent event) {
-
+        Visao.App.trocaTela("cadastro");
     }
 
     @FXML
     void irCliente(ActionEvent event) {
-
+        Visao.App.trocaTela("listaCliente");
     }
 
     @FXML
     void irConsulta(ActionEvent event) {
-
+        Visao.App.trocaTela("listaConsulta");
     }
 
     @FXML
     void irFuncionario(ActionEvent event) {
-
+        Visao.App.trocaTela("listaFunc");
     }
 
     @FXML
     void irHome(ActionEvent event) {
-        Visao.App.trocaTela("home");
+
+    }
+
+    @FXML
+    void irVet(ActionEvent event) {
+        Visao.App.trocaTela("listaVet");
     }
 
     @FXML
     void logout(ActionEvent event) {
-        Visao.App.trocaTela("inicio");
+
     }
+
 }

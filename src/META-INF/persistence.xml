@@ -5,12 +5,12 @@
         <!-- Implementação do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Lista de entidades -->
-        <class>Modelo.Administrador</class>
         <class>Modelo.Recepcionista</class>
         <class>Modelo.Consulta</class>
         <class>Modelo.Veterinario</class>
         <class>Modelo.Animal</class>
         <class>Modelo.Cliente</class>
+        <class>Modelo.Login</class>
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

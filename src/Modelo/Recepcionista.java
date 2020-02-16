@@ -19,9 +19,6 @@ public class Recepcionista {
     @Column
     private String endereco;
 
-    @Column
-    private String senha;
-
 
     public String getNome() {
         return nome;
@@ -55,24 +52,4 @@ public class Recepcionista {
         this.endereco = endereco;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recepcionista that = (Recepcionista) o;
-        return senha.equals(that.senha);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(senha);
-    }
 }

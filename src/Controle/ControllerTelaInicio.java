@@ -6,6 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class ControllerTelaInicio {
 
     @FXML
@@ -20,7 +24,6 @@ public class ControllerTelaInicio {
     @FXML
     void login(ActionEvent event) {
         Visao.App.trocaTela("home");
-        UsuarioLogado.getInstance().setEhAdm(true);
     }
 
 }
