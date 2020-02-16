@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 
+
+
 public class ControllerTelaHome {
 
     @FXML
@@ -55,11 +57,11 @@ public class ControllerTelaHome {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
     }
 }

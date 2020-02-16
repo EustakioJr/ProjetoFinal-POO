@@ -69,12 +69,12 @@ public class ControllerListaCliente {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
     }
 
 }

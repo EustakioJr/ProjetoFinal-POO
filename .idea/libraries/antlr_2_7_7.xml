@@ -1,54 +1,27 @@
 <component name="libraryTable">
   <library name="antlr-2.7.7">
     <CLASSES>
-      <root url="jar://C:/Bibliotecas JPA/antlr-2.7.7.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/dom4j-1.6.1.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-commons-annotations-4.0.2.Final.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-core-4.2.19.Final.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-entitymanager-4.2.19.Final.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/javassist-3.18.1-GA.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/jboss-logging-3.1.0.GA.jar!/" />
-      <root url="jar://C:/Bibliotecas JPA/jboss-transaction-api_1.1_spec-1.0.1.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/antlr-2.7.7.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/byte-buddy-1.10.7.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/classmate-1.5.1.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/dom4j-2.1.1.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/FastInfoset-1.2.15.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/hibernate-commons-annotations-5.1.0.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/hibernate-core-5.4.11.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/istack-commons-runtime-3.0.7.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/jandex-2.1.1.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/javassist-3.24.0-GA.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/javax.persistence-api-2.2.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/jaxb-api-2.3.1.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/jaxb-runtime-2.3.1.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/jboss-logging-3.3.2.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/jboss-transaction-api_1.2_spec-1.1.1.Final.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/mysql-connector-java-8.0.19.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/stax-ex-1.8.jar!/" />
+      <root url="jar://C:/Bibliotecas JPA/required/txw2-2.3.1.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/documentation/javadocs" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/buildSrc/src/main/groovy" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/chapters/events/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/chapters/multitenancy/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/chapters/pc/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/chapters/query_criteria/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/chapters/services/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/devguide/en-US/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/manual/en-US/extras" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/annotations/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/basic/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/entitymanager/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/envers/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/osgi/managed-jpa/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/osgi/unmanaged-jpa/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/documentation/src/main/docbook/quickstart/tutorials/osgi/unmanaged-native/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-c3p0/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-c3p0/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-core/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-core/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-ehcache/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-ehcache/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-enhance-maven-plugin/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-entitymanager/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-entitymanager/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-envers/src/demo/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-envers/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-envers/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-gradle-plugin/src/main/groovy" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-infinispan/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-infinispan/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-osgi/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-proxool/src/main/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-proxool/src/test/java" />
-      <root url="jar://C:/Bibliotecas JPA/hibernate-release-4.2.19.Final.zip!/hibernate-release-4.2.19.Final/project/hibernate-testing/src/main/java" />
-    </SOURCES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>

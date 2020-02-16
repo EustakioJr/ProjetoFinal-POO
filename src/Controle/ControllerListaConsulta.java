@@ -51,7 +51,13 @@ public class ControllerListaConsulta {
     private TableColumn<?, ?> nomeTabela;
 
     @FXML
-    private TableColumn<?, ?> cpfTabela;
+    private TableColumn<?, ?> animalTabela;
+
+    @FXML
+    private TableColumn<?, ?> vetTabela;
+
+    @FXML
+    private TableColumn<?, ?> atendidoTabela;
 
     @FXML
     private TextField campoNome1;
@@ -73,12 +79,12 @@ public class ControllerListaConsulta {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
     }
 
 }

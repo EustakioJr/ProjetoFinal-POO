@@ -1,13 +1,14 @@
 package Modelo;
 
 import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import java.util.Objects;
 
-@Table
+@Entity
 public class Administrador {
-
-    @Column
+    @Id
     private String login;
 
     @Column

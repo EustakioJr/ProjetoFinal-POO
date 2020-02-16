@@ -2,6 +2,10 @@ package Modelo;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name="Animal.BuscaId", query = "SELECT a FROM Animal a WHERE a.id = :id")
+})
+
 @Entity
 public class Animal {
     @Id

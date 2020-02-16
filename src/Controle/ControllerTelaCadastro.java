@@ -45,22 +45,22 @@ public class ControllerTelaCadastro {
 
     @FXML
     void irCadastroRecep(ActionEvent event) {
-
+        System.out.println(UsuarioLogado.getInstance().isEhAdm());
     }
 
     @FXML
     void irCadastroVet(ActionEvent event) {
-
+        System.out.println(UsuarioLogado.getInstance().isEhAdm());
     }
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
     }
 
 }

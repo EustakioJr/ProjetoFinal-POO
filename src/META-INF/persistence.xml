@@ -1,30 +1,27 @@
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-             version="2.1">
-
-    <persistence-unit name="persistenceUnitName" transaction-type="RESOURCE_LOCAL">
-        <class>Modelo.Cliente</class>
-        <class>Modelo.Animal</class>
-        <class>Modelo.Veterinario</class>
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <!-- Unidade de persistencia -->
+    <persistence-unit name="ProjetoPoo">
+        <!-- Implementação do JPA -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Lista de entidades -->
         <class>Modelo.Administrador</class>
-        <class>Modelo.Consulta</class>
         <class>Modelo.Recepcionista</class>
-        
+        <class>Modelo.Consulta</class>
+        <class>Modelo.Veterinario</class>
+        <class>Modelo.Animal</class>
+        <class>Modelo.Cliente</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/projetopoo" /> <!-- BD Mane -->
-            <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="3235" /> <!-- DB Password -->
-
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> <!-- DB Dialect -->
-            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
-
-            <property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
-            <property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
+            <!-- Propriedades JDBC -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/projetopoo?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="EustakioJr"/>
+            <property name="javax.persistence.jdbc.password" value="Sen3235363698"/>
+            <!-- Configurações específicas do Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
-
     </persistence-unit>
-
 </persistence>

@@ -7,6 +7,13 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 public class ControllerCadastroAnimal {
 
     @FXML
@@ -43,11 +50,12 @@ public class ControllerCadastroAnimal {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        Visao.App.trocaTela("inicio");
 
     }
 

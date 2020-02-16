@@ -19,7 +19,8 @@ public class ControllerTelaInicio {
 
     @FXML
     void login(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
+        UsuarioLogado.getInstance().setEhAdm(true);
     }
 
 }
