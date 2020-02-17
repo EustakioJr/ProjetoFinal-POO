@@ -1,40 +1,30 @@
 package Controle;
 
-import Modelo.Animal;
 import Modelo.Consulta;
-import Modelo.Veterinario;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
+import javafx.scene.control.Label;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ControllerListaConsulta {
 
-    @FXML
-    private Menu menuHome;
+    Boolean resultado;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoHome;
+
+    @FXML
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -87,6 +77,9 @@ public class ControllerListaConsulta {
     @FXML
     private TextField campoCrmv;
 
+    @FXML
+    private Label labelAviso;
+
     private List<Consulta> listConsulta;
     private ObservableList<Consulta> observableListConsulta;
 
@@ -132,12 +125,22 @@ public class ControllerListaConsulta {
 
     @FXML
     void atualiza(ActionEvent event) {
+        resultado = UsuarioLogado.getInstance().isEhAdm();
+        if (resultado){
 
+        }else{
+            labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
+        }
     }
 
     @FXML
     void deleta(ActionEvent event) {
+        resultado = UsuarioLogado.getInstance().isEhAdm();
+        if (resultado){
 
+        }else{
+            labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
+        }
     }
 
     @FXML
@@ -147,12 +150,13 @@ public class ControllerListaConsulta {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
     }
 
 }

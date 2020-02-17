@@ -1,10 +1,11 @@
 package Controle;
 
+import Modelo.Login;
+
 public class UsuarioLogado {
 
     private static UsuarioLogado uniqueInstance;
-
-    private boolean ehAdm;
+    private boolean ehAdm = false;
 
     public boolean isEhAdm() {
         return ehAdm;

@@ -3,7 +3,6 @@ package Controle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 
 public class ControllerTelaHome {
 
@@ -11,10 +10,10 @@ public class ControllerTelaHome {
     private Button botaoCadastrar;
 
     @FXML
-    private Menu menuHome;
+    private Button botaoHome;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoLogout;
 
     @FXML
     private Button botaoFuncionarios;
@@ -58,7 +57,7 @@ public class ControllerTelaHome {
 
     @FXML
     void irHome(ActionEvent event) {
-
+        Visao.App.trocaTela("home");
     }
 
     @FXML
@@ -68,7 +67,8 @@ public class ControllerTelaHome {
 
     @FXML
     void logout(ActionEvent event) {
-
+        Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
     }
 
 }

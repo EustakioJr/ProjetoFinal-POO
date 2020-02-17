@@ -1,13 +1,12 @@
 package Controle;
 
+import Dao.DaoLogin;
+import Dao.DaoVeterinario;
 import Modelo.Login;
 import Modelo.Veterinario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -15,10 +14,10 @@ import javax.persistence.Persistence;
 public class ControllerCadastroVeterinario {
 
     @FXML
-    private Menu menuHome;
+    private Button botaoHome;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -42,9 +41,20 @@ public class ControllerCadastroVeterinario {
     private PasswordField campoSenha;
 
     @FXML
+    private Label labelAviso;
+
+    @FXML
+    private Button botaoVoltar;
+
+    @FXML
+    void voltar(ActionEvent event) {
+        limpaCampo();
+        Visao.App.trocaTela("cadastro");
+    }
+
+    @FXML
     void cadastrar(ActionEvent event) {
-        EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
-        em.getTransaction().begin();
+        Boolean resultado;
 
         Veterinario novo = new Veterinario();
         novo.setCpf(campoCPF.getText());
@@ -58,22 +68,39 @@ public class ControllerCadastroVeterinario {
         login.setSenha(campoSenha.getText());
         login.setTipo("Veterinario");
 
-        em.persist(novo);
-        em.persist(login);
-        em.getTransaction().commit();
+        DaoVeterinario dao = new DaoVeterinario();
+        resultado = dao.salvar(novo);
 
-        em.close();
+
+        if (resultado){
+            DaoLogin daoL = new DaoLogin();
+            daoL.salvar(login);
+            labelAviso.setText("Cadastro realizado com sucesso");
+
+        }else{
+            labelAviso.setText("Falha ao realizar Cadastro");
+        }
 
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
     }
-
+    public void limpaCampo(){
+        campoCPF.setText("");
+        campoCRMV.setText("");
+        campoEndereco.setText("");
+        campoNome.setText("");
+        campoSenha.setText("");
+        campoTelefone.setText("");
+    }
 }

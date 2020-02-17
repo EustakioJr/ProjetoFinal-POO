@@ -1,23 +1,21 @@
 package Controle;
 
+import Dao.DaoCliente;
 import Modelo.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class ControllerCadastroCliente {
 
     @FXML
-    private Menu menuHome;
+    private Button botaoHome;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -35,31 +33,54 @@ public class ControllerCadastroCliente {
     private Button botaoCadastrar;
 
     @FXML
+    private Label labelAviso;
+
+    @FXML
+    private Button botaoVoltar;
+
+    @FXML
+    void voltar(ActionEvent event) {
+        limpaCampo();
+        Visao.App.trocaTela("cadastro");
+    }
+
+    @FXML
     void cadastrar(ActionEvent event) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoPoo");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        Boolean resultado;
         Cliente novo = new Cliente();
         novo.setCpf(campoCPF.getText());
         novo.setEndereco(campoEndereco.getText());
         novo.setNome(campoNome.getText());
         novo.setTelefone(campoTelefone.getText());
 
-        em.persist(novo);
-        em.getTransaction().commit();
+        DaoCliente dao = new DaoCliente();
+        resultado = dao.salvar(novo);
 
-        em.close();
-        emf.close();
+        if (resultado){
+            labelAviso.setText("Cadastro realizado com sucesso");
+        }else{
+            labelAviso.setText("Falha ao realizar Cadastro");
+        }
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
+    }
+
+    public void limpaCampo(){
+        campoCPF.setText("");
+        campoEndereco.setText("");
+        campoNome.setText("");
+        campoTelefone.setText("");
     }
 
 }

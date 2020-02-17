@@ -1,25 +1,27 @@
 package Controle;
 
+import Dao.DaoLogin;
+import Dao.DaoRecepcionista;
 import Modelo.Login;
 import Modelo.Recepcionista;
-import Modelo.Veterinario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 public class ControllerCadastroRecepcionista {
 
     @FXML
-    private Menu menuHome;
+    private Label labelAviso;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoHome;
+
+    @FXML
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -40,10 +42,18 @@ public class ControllerCadastroRecepcionista {
     private PasswordField campoSenha;
 
     @FXML
-    void cadastrar(ActionEvent event) {
-        EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
-        em.getTransaction().begin();
+    private Button botaoVoltar;
 
+    @FXML
+    void voltar(ActionEvent event) {
+        limpaCampo();
+        Visao.App.trocaTela("cadastro");
+    }
+
+
+    @FXML
+    void cadastrar(ActionEvent event) {
+        Boolean resultado;
         Recepcionista novo = new Recepcionista();
         novo.setCpf(campoCPF.getText());
         novo.setEndereco(campoEndereco.getText());
@@ -55,21 +65,37 @@ public class ControllerCadastroRecepcionista {
         login.setSenha(campoSenha.getText());
         login.setTipo("Recepcionista");
 
-        em.persist(novo);
-        em.persist(login);
-        em.getTransaction().commit();
+        DaoRecepcionista dao = new DaoRecepcionista();
+        resultado = dao.salvar(novo);
 
-        em.close();
+        if (resultado){
+            DaoLogin daoL = new DaoLogin();
+            daoL.salvar(login);
+            labelAviso.setText("Cadastro realizado com sucesso");
+        }else{
+            labelAviso.setText("Falha ao realizar Cadastro");
+        }
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
+    }
+
+    public void limpaCampo(){
+        campoCPF.setText("");
+        campoEndereco.setText("");
+        campoNome.setText("");
+        campoSenha.setText("");
+        campoTelefone.setText("");
     }
 
 }

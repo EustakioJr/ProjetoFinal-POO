@@ -1,12 +1,11 @@
 package Controle;
 
+import Dao.DaoConsulta;
 import Modelo.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -15,10 +14,10 @@ import java.sql.Date;
 public class ControllerCadastroConsulta {
 
     @FXML
-    private Menu menuHome;
+    private Button botaoHome;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoLogout;
 
     @FXML
     private TextField campoMotivo;
@@ -36,10 +35,23 @@ public class ControllerCadastroConsulta {
     private DatePicker campoData;
 
     @FXML
+    private Label labelAviso;
+
+    @FXML
+    private Button botaoVoltar;
+
+    @FXML
+    void voltar(ActionEvent event) {
+        limpaCampo();
+        Visao.App.trocaTela("cadastro");
+    }
+
+    @FXML
     void cadastrar(ActionEvent event) {
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
 
+        Boolean resultado;
         Integer idAnimal = Integer.parseInt(campoAnimal.getText());
         Consulta novo = new Consulta();
         novo.setData(Date.valueOf(campoData.getValue()));
@@ -52,20 +64,34 @@ public class ControllerCadastroConsulta {
                 .getSingleResult());
         novo.setFoiAtendido(false);
 
-        em.persist(novo);
-        em.getTransaction().commit();
+        DaoConsulta dao = new DaoConsulta();
+        resultado = dao.salvar(novo);
+
+        if (resultado){
+            labelAviso.setText("Cadastro realizado com sucesso");
+        }else{
+            labelAviso.setText("Falha ao realizar Cadastro");
+        }
+
 
         em.close();
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
+    }
+
+    public void limpaCampo(){
+
     }
 
 }

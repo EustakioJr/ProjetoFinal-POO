@@ -1,25 +1,26 @@
 package Controle;
 
+import Dao.DaoAnimal;
 import Modelo.Animal;
 import Modelo.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
 public class ControllerCadastroAnimal {
 
     @FXML
-    private Menu menuHome;
+    private Button botaoHome;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -43,10 +44,23 @@ public class ControllerCadastroAnimal {
     private TextField campoDono;
 
     @FXML
+    private Label labelAviso;
+
+    @FXML
+    private Button botaoVoltar;
+
+    @FXML
+    void voltar(ActionEvent event) {
+        limpaCampo();
+        Visao.App.trocaTela("cadastro");
+    }
+
+    @FXML
     void cadastrar(ActionEvent event) {
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
 
         em.getTransaction().begin();
+        Boolean resultado;
         Animal novo = new Animal();
         novo.setNome(campoNome.getText());
         novo.setEspecie(campoEspecie.getText());
@@ -57,21 +71,38 @@ public class ControllerCadastroAnimal {
                 .setParameter("dono", campoDono.getText())
                 .getSingleResult());
 
-        em.persist(novo);
-        em.getTransaction().commit();
+        DaoAnimal dao = new DaoAnimal();
+        resultado = dao.salvar(novo);
+
+        if (resultado){
+            labelAviso.setText("Cadastro realizado com sucesso");
+        }else{
+            labelAviso.setText("Falha ao realizar Cadastro");
+        }
 
         em.close();
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
+    }
 
+    public void limpaCampo(){
+        campoDono.setText("");
+        campoEspecie.setText("");
+        campoIdade.setText("");
+        campoNome.setText("");
+        campoPeso.setText("");
+        campoRaca.setText("");
     }
 
 }

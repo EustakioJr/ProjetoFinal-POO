@@ -1,18 +1,14 @@
 package Controle;
 
 import Modelo.Animal;
-import Modelo.Consulta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -21,11 +17,13 @@ import java.util.List;
 
 public class ControllerListaAnimal {
 
-    @FXML
-    private Menu menuHome;
+    Boolean resultado;
 
     @FXML
-    private Menu botaoLogout;
+    private Button botaoHome;
+
+    @FXML
+    private Button botaoLogout;
 
     @FXML
     private TextField campoNome;
@@ -76,13 +74,26 @@ public class ControllerListaAnimal {
     private TableColumn<Animal, String> cpfDonoTabela;
 
     @FXML
-    void atualiza(ActionEvent event) {
+    private Label labelAviso;
 
+    @FXML
+    void atualiza(ActionEvent event) {
+        resultado = UsuarioLogado.getInstance().isEhAdm();
+        if (resultado){
+            
+        }else{
+            labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
+        }
     }
 
     @FXML
     void deleta(ActionEvent event) {
+        resultado = UsuarioLogado.getInstance().isEhAdm();
+        if (resultado){
 
+        }else{
+            labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
+        }
     }
 
     @FXML
@@ -98,6 +109,7 @@ public class ControllerListaAnimal {
     @FXML
     void logout(ActionEvent event) {
         Visao.App.trocaTela("inicio");
+        UsuarioLogado.getInstance().setEhAdm(false);
     }
 
     private List<Animal> listAnimal;

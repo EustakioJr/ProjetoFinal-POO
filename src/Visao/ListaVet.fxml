@@ -2,14 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerListaVet">
-    <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
-        <Menu fx:id="menuHome" mnemonicParsing="false" onAction="#irHome" text="Home" />
-        <Menu fx:id="botaoLogout" mnemonicParsing="false" onAction="#logout" text="Logout" />
-    </MenuBar>
-    <Label layoutX="22.0" layoutY="38.0" text="Nome:" />
-    <TextField fx:id="campoNome" layoutX="61.0" layoutY="34.0" prefHeight="25.0" prefWidth="528.0" />
+    <Label layoutX="22.0" layoutY="44.0" text="Nome:" />
+    <TextField fx:id="campoNome" layoutX="61.0" layoutY="40.0" prefHeight="25.0" prefWidth="528.0" />
     <Label layoutX="23.0" layoutY="74.0" text="CPF do Funcionario:" />
     <TextField fx:id="campoCPF" layoutX="130.0" layoutY="70.0" prefHeight="25.0" prefWidth="146.0" />
     <Button fx:id="botaoFiltrar" layoutX="512.0" layoutY="70.0" mnemonicParsing="false" onAction="#filtrar" prefHeight="25.0" prefWidth="73.0" text="Filtrar" />
@@ -38,4 +36,12 @@
             </TableView>
         </AnchorPane>
     </SplitPane>
+    <Button fx:id="botaoHome" layoutX="9.0" layoutY="5.0" mnemonicParsing="false" onAction="#irHome" prefHeight="21.0" prefWidth="49.0" text="Home" />
+    <Line endX="507.0" layoutX="93.0" layoutY="34.0" startX="-100.0" />
+    <Button fx:id="botaoLogout" layoutX="64.0" layoutY="5.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="57.0" text="Logout" />
+    <Label fx:id="labelAviso" layoutX="159.0" layoutY="5.0" prefHeight="25.0" prefWidth="413.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
 </AnchorPane>
