@@ -1,5 +1,6 @@
 package Controle;
 
+import Dao.DaoAnimal;
 import Modelo.Animal;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,6 +19,10 @@ import java.util.List;
 public class ControllerListaAnimal {
 
     Boolean resultado;
+
+    Animal animalSelecionado;
+
+    DaoAnimal daoAnimal;
 
     @FXML
     private Button botaoHome;
@@ -80,7 +85,15 @@ public class ControllerListaAnimal {
     void atualiza(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
-            
+            Animal a = new Animal();
+            a.setId(animalSelecionado.getId());
+            a.setNome((campoNome.getText().isEmpty())? campoNome.getText():campoNome.getText());
+            a.setEspecie((campoEspecie.getText().isEmpty()) ? animalSelecionado.getEspecie() : campoEspecie.getText());
+            a.setRaca((racaAnimal.getText().isEmpty())? animalSelecionado.getRaca():racaAnimal.getText());
+            a.setIdade((idadeAnimal.getText().isEmpty())?animalSelecionado.getIdade(): idadeAnimal.getText());
+            a.setDono(a.getDono());
+
+            daoAnimal.atualizar(a);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -90,7 +103,7 @@ public class ControllerListaAnimal {
     void deleta(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
-
+            daoAnimal.deletar(animalSelecionado);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -116,8 +129,9 @@ public class ControllerListaAnimal {
     private ObservableList<Animal> observableListAnimal;
 
     public void initialize(){
-        carregarTabelaAnimal();
+        daoAnimal = new DaoAnimal();
 
+        carregarTabelaAnimal();
 
         tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemAnimal(newValue));
     }
@@ -140,12 +154,14 @@ public class ControllerListaAnimal {
 
     public void selectItemAnimal(Animal animal){
         if (animal != null){
-           nomeAnimal.setText(animal.getNome());
-           especieAnimal.setText(animal.getEspecie());
-           racaAnimal.setText(animal.getRaca());
-           pesoAnimal.setText(animal.getPeso());
-           idadeAnimal.setText(animal.getIdade());
+            animalSelecionado = animal;
+            nomeAnimal.setText(animal.getNome());
+            especieAnimal.setText(animal.getEspecie());
+            racaAnimal.setText(animal.getRaca());
+            pesoAnimal.setText(animal.getPeso());
+            idadeAnimal.setText(animal.getIdade());
         }else{
+            animalSelecionado = null;
             nomeAnimal.setText("");
             especieAnimal.setText("");
             racaAnimal.setText("");

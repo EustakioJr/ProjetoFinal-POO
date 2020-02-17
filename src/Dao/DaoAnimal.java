@@ -26,5 +26,43 @@ public class DaoAnimal {
         return resultado;
     }
 
+    public Boolean atualizar(Animal animal){
+        boolean resultado;
+        EntityManager em = new ConnectionFactory().getConnection();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(animal);
+            em.getTransaction().commit();
+            resultado=true;
+        }catch (Exception e){
+            em.getTransaction().rollback();
+            resultado=false;
+        }finally{
+            em.close();
+        }
+
+        return resultado;
+    }
+
+    public Boolean deletar(Animal animal){
+        boolean resultado;
+        EntityManager em = new ConnectionFactory().getConnection();
+
+        try {
+            em.getTransaction().begin();
+            em.remove(animal);
+            em.getTransaction().commit();
+            resultado=true;
+        }catch (Exception e){
+            em.getTransaction().rollback();
+            resultado=false;
+        }finally{
+            em.close();
+        }
+
+        return resultado;
+    }
+
 
 }
