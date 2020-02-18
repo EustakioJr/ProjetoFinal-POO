@@ -1,5 +1,6 @@
 package Controle;
 
+import Dao.DaoConsulta;
 import Modelo.Consulta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +20,8 @@ import java.util.List;
 public class ControllerListaConsulta {
 
     Boolean resultado;
+    DaoConsulta daoConsulta;
+    Consulta consultaSelecionada;
 
     @FXML
     private Button botaoHome;
@@ -84,15 +87,22 @@ public class ControllerListaConsulta {
     private ObservableList<Consulta> observableListConsulta;
 
     public void initialize(){
-        carregarTabelaConsultas();
+        carregaTabelaCompleta();
 
+        daoConsulta = new DaoConsulta();
 
         tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemConsulta(newValue));
     }
 
-    public void carregarTabelaConsultas(){
+    void carregaTabelaCompleta(){
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
+        carregarTabelaConsultas(new ArrayList<>(em.createQuery("SELECT c FROM Consulta c",Consulta.class).getResultList()));
+        em.close();
+    }
+
+    public void carregarTabelaConsultas(List<Consulta> listaConsultas){
+
         dataTabela.setCellValueFactory(new PropertyValueFactory<>("data"));
         atendidoTabela.setCellValueFactory(new PropertyValueFactory<>("foiAtendido"));
 
@@ -100,11 +110,10 @@ public class ControllerListaConsulta {
 
         vetTabela.setCellValueFactory( param-> new SimpleStringProperty(param.getValue().getVeterinario().getCrmv()));
 
-        listConsulta = new ArrayList<>(em.createQuery("SELECT c FROM Consulta c",Consulta.class).getResultList());
+        listConsulta = listaConsultas;
 
         observableListConsulta = FXCollections.observableArrayList(listConsulta);
         tabela.setItems(observableListConsulta);
-        em.close();
     }
 
     public void selectItemConsulta(Consulta consulta){
@@ -115,19 +124,27 @@ public class ControllerListaConsulta {
             motivoConsulta.setText(consulta.getMotivo());
             checkConsulta.setSelected(consulta.getFoiAtendido());
         }else{
-            dataConsulta.setText("");
-            animalConsulta.setText("");
-            vetConsulta.setText("");
-            motivoConsulta.setText("");
-            checkConsulta.setSelected(false);
+            limpaCampos();
         }
+    }
+
+    void limpaCampos(){
+        dataConsulta.setText("");
+        animalConsulta.setText("");
+        vetConsulta.setText("");
+        motivoConsulta.setText("");
+        checkConsulta.setSelected(false);
     }
 
     @FXML
     void atualiza(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
+            Consulta c = consultaSelecionada;
 
+            c.setFoiAtendido(checkConsulta.isSelected());
+
+            daoConsulta.atualizar(c);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -137,7 +154,7 @@ public class ControllerListaConsulta {
     void deleta(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
-
+            daoConsulta.deletar(consultaSelecionada);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -145,7 +162,35 @@ public class ControllerListaConsulta {
 
     @FXML
     void filtrar(ActionEvent event) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT c FROM Consulta c");
+        if (!campoNome.getText().isEmpty() || !campoCrmv.getText().isEmpty() || campoData.getValue() != null || campoAtendido.getValue() != null){
+            sb.append(" WHERE");
 
+            if (!campoNome.getText().isEmpty()) sb.append(" c.animal.id = '"+ campoNome.getText()+"'");
+            if (!campoCrmv.getText().isEmpty()) sb.append(
+                    ((!campoNome.getText().isEmpty())? " AND": "")
+                            +" c.veterinario.crmv = '"
+                            + campoCrmv.getText()
+                            +"'"
+            );
+            if (campoData.getValue() != null) sb.append(
+                    ((!campoNome.getText().isEmpty() || !campoCrmv.getText().isEmpty())? " AND": "")
+                    +" c.data = '"
+                    + java.sql.Date.valueOf(campoData.getValue())
+                    +"'"
+            );
+            if (campoAtendido.getValue() != null) sb.append(
+                    ((!campoNome.getText().isEmpty() || !campoCrmv.getText().isEmpty() || campoData.getValue() != null)? " AND": "")
+                    +" c.foiAtentido = "
+                    + campoAtendido.getValue()
+                    +"'"
+            );
+
+        }
+
+        carregarTabelaConsultas(daoConsulta.buscaFiltragem(sb.toString()));
+        limpaCampos();
     }
 
     @FXML
