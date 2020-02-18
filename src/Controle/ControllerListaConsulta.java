@@ -156,6 +156,8 @@ public class ControllerListaConsulta {
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+        limpaCampos();
+        carregaTabelaCompleta();
     }
 
     @FXML
@@ -166,6 +168,8 @@ public class ControllerListaConsulta {
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+        limpaCampos();
+        carregaTabelaCompleta();
     }
 
     @FXML
