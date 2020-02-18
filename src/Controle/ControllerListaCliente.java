@@ -1,5 +1,6 @@
 package Controle;
 
+import Dao.DaoCliente;
 import Modelo.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,8 @@ import java.util.List;
 public class ControllerListaCliente {
 
     Boolean resultado;
+    DaoCliente daoCliente;
+    Cliente clienteSelecionado;
 
     @FXML
     private Button botaoHome;
@@ -67,7 +70,13 @@ public class ControllerListaCliente {
     void atualiza(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
+            Cliente c = new Cliente();
 
+            c.setCpf(clienteSelecionado.getCpf());
+            c.setNome(clienteSelecionado.getNome());
+            c.setEndereco(enderecoCliente.getText());
+            c.setTelefone(telefoneCliente.getText());
+            daoCliente.atualizar(c);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -77,7 +86,7 @@ public class ControllerListaCliente {
     void deleta(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
-
+         daoCliente.deletar(clienteSelecionado);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
@@ -85,7 +94,23 @@ public class ControllerListaCliente {
 
     @FXML
     void filtrar(ActionEvent event) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT c FROM Cliente c");
+        if (!campoNome.getText().isEmpty() || !campoCPF.getText().isEmpty()){
+            sb.append(" WHERE");
 
+            if (!campoNome.getText().isEmpty()) sb.append(" a.nome = '"+ campoNome.getText()+"'");
+            if (!campoCPF.getText().isEmpty()) sb.append(
+                    ((!campoNome.getText().isEmpty())? " AND": "")
+                            +" a.dono.cpf = '"
+                            + campoCPF.getText()
+                            +"'"
+            );
+
+        }
+
+        carregarTableViewCliente(daoCliente.buscaFiltragem(sb.toString()));
+        limpaCampo();
     }
 
     @FXML
@@ -100,38 +125,49 @@ public class ControllerListaCliente {
     }
 
     public void initialize(){
-        carregarTableViewCliente();
+        daoCliente = new DaoCliente();
+        carregaTabelaCompleta();
         tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemCliente(newValue));
     }
 
     private List<Cliente> listCliente;
     private ObservableList<Cliente> observableListCliente;
 
-    public void carregarTableViewCliente(){
+    void carregaTabelaCompleta(){
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
+        carregarTableViewCliente(new ArrayList<>(em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList()));
+        em.close();
+    }
+
+    public void carregarTableViewCliente(List<Cliente> listaClientes){
+
         nomeTabela.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cpfTabela.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 
-        listCliente = new ArrayList<>(em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList());
+        listCliente = listaClientes;
 
         observableListCliente = FXCollections.observableArrayList((listCliente));
         tabela.setItems(observableListCliente);
-        em.close();
     }
 
     public void selectItemCliente(Cliente cliente){
         if (cliente != null){
+            clienteSelecionado = cliente;
             nomeCliente.setText(cliente.getNome());
             enderecoCliente.setText(cliente.getEndereco());
             telefoneCliente.setText(cliente.getTelefone());
             cpfCliente.setText(cliente.getCpf());
         }else{
-            nomeCliente.setText("");
-            enderecoCliente.setText("");
-            telefoneCliente.setText("");
-            cpfCliente.setText("");
+            limpaCampo();
         }
+    }
+
+    public void limpaCampo(){
+        nomeCliente.setText("");
+        enderecoCliente.setText("");
+        telefoneCliente.setText("");
+        cpfCliente.setText("");
     }
 
 }
