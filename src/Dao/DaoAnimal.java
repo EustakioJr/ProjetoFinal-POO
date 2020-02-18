@@ -4,6 +4,7 @@ import Conection.ConnectionFactory;
 import Modelo.Animal;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class DaoAnimal {
 
@@ -50,8 +51,11 @@ public class DaoAnimal {
         EntityManager em = new ConnectionFactory().getConnection();
 
         try {
+
+            Animal a = em.find(Animal.class, animal.getId());
+
             em.getTransaction().begin();
-            em.remove(animal);
+            em.remove(a);
             em.getTransaction().commit();
             resultado=true;
         }catch (Exception e){
@@ -62,6 +66,12 @@ public class DaoAnimal {
         }
 
         return resultado;
+    }
+
+    public List<Animal> buscaFiltragem(String busca){
+        EntityManager em = new ConnectionFactory().getConnection();
+        return  em.createQuery(busca, Animal.class).getResultList();
+
     }
 
 

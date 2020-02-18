@@ -85,4 +85,17 @@ public class Animal {
     public void setDono(Cliente dono) {
         this.dono = dono;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", raca='" + raca + '\'' +
+                ", especie='" + especie + '\'' +
+                ", idade='" + idade + '\'' +
+                ", peso='" + peso + '\'' +
+                ", dono=" + dono +
+                '}';
+    }
 }

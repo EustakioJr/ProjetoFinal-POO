@@ -87,16 +87,18 @@ public class ControllerListaAnimal {
         if (resultado){
             Animal a = new Animal();
             a.setId(animalSelecionado.getId());
-            a.setNome((campoNome.getText().isEmpty())? campoNome.getText():campoNome.getText());
-            a.setEspecie((campoEspecie.getText().isEmpty()) ? animalSelecionado.getEspecie() : campoEspecie.getText());
-            a.setRaca((racaAnimal.getText().isEmpty())? animalSelecionado.getRaca():racaAnimal.getText());
-            a.setIdade((idadeAnimal.getText().isEmpty())?animalSelecionado.getIdade(): idadeAnimal.getText());
-            a.setDono(a.getDono());
-
+            a.setNome(animalSelecionado.getNome());
+            a.setEspecie( animalSelecionado.getEspecie());
+            a.setRaca(animalSelecionado.getRaca());
+            a.setIdade(idadeAnimal.getText());
+            a.setPeso(pesoAnimal.getText());
+            a.setDono(animalSelecionado.getDono());
             daoAnimal.atualizar(a);
+            limpaCampo();
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+        carregarTabelaCompleta();
     }
 
     @FXML
@@ -107,20 +109,45 @@ public class ControllerListaAnimal {
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+        carregarTabelaCompleta();
     }
 
     @FXML
     void filtrar(ActionEvent event) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT a FROM Animal a");
+        if (!campoNome.getText().isEmpty() || !campoCPF.getText().isEmpty() || !campoEspecie.getText().isEmpty()){
+            sb.append(" WHERE");
 
+            if (!campoNome.getText().isEmpty()) sb.append(" a.nome = '"+ campoNome.getText()+"'");
+            if (!campoCPF.getText().isEmpty()) sb.append(
+                    ((!campoNome.getText().isEmpty())? " AND": "")
+                            +" a.dono.cpf = '"
+                            + campoCPF.getText()
+                            +"'"
+            );
+            if (!campoEspecie.getText().isEmpty()) sb.append(
+                    ((!campoNome.getText().isEmpty()||!campoCPF.getText().isEmpty())? " AND" : "")
+                            +" a.especie = '"
+                            + campoEspecie.getText()
+                            +"'"
+            );
+
+        }
+
+        carregarTabelaAnimal(daoAnimal.buscaFiltragem(sb.toString()));
+        limpaCampo();
     }
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampo();
         Visao.App.trocaTela("inicio");
         UsuarioLogado.getInstance().setEhAdm(false);
     }
@@ -131,29 +158,35 @@ public class ControllerListaAnimal {
     public void initialize(){
         daoAnimal = new DaoAnimal();
 
-        carregarTabelaAnimal();
+        carregarTabelaCompleta();
 
         tabela.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selectItemAnimal(newValue));
     }
 
-    public void carregarTabelaAnimal(){
+    void carregarTabelaCompleta() {
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
+        carregarTabelaAnimal(new ArrayList<Animal>(em.createQuery("SELECT a FROM Animal a", Animal.class).getResultList()));
+        em.close();
+    }
+
+    public void carregarTabelaAnimal(List<Animal> listaAnimais){
+
 
         idTabela.setCellValueFactory(new PropertyValueFactory<>("id"));
         nomeTabela.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especieTabela.setCellValueFactory(new PropertyValueFactory<>("especie"));
         cpfDonoTabela.setCellValueFactory( param-> new SimpleStringProperty(param.getValue().getDono().getCpf()));
 
-        listAnimal = new ArrayList<>(em.createQuery("SELECT a FROM Animal a",Animal.class).getResultList());
+        listAnimal = listaAnimais;
 
         observableListAnimal = FXCollections.observableArrayList(listAnimal);
         tabela.setItems(observableListAnimal);
-        em.close();
     }
 
     public void selectItemAnimal(Animal animal){
         if (animal != null){
+            System.out.println(animal.toString());
             animalSelecionado = animal;
             nomeAnimal.setText(animal.getNome());
             especieAnimal.setText(animal.getEspecie());
@@ -168,6 +201,14 @@ public class ControllerListaAnimal {
             pesoAnimal.setText("");
             idadeAnimal.setText("");
         }
+    }
+
+    public void limpaCampo(){
+        nomeAnimal.setText("");
+        especieAnimal.setText("");
+        racaAnimal.setText("");
+        pesoAnimal.setText("");
+        idadeAnimal.setText("");
     }
 
 }
