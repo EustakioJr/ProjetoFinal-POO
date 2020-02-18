@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerListaVet">
     <Label layoutX="22.0" layoutY="44.0" text="Nome:" />
     <TextField fx:id="campoNome" layoutX="61.0" layoutY="40.0" prefHeight="25.0" prefWidth="528.0" />
@@ -17,9 +17,9 @@
             <Label layoutX="14.0" layoutY="63.0" text="Endereço:" />
             <Label layoutX="14.0" layoutY="109.0" text="Telefone:" />
             <Label layoutX="14.0" layoutY="153.0" text="CPF:" />
-            <TextField fx:id="cpfFunc" layoutX="14.0" layoutY="170.0" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="cpfFunc" disable="true" editable="false" layoutX="14.0" layoutY="170.0" prefHeight="25.0" prefWidth="173.0" />
             <Label layoutX="14.0" layoutY="201.0" text="CRMV:" />
-            <TextField fx:id="crmvFunc" layoutX="14.0" layoutY="218.0" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="crmvFunc" disable="true" editable="false" layoutX="14.0" layoutY="218.0" prefHeight="25.0" prefWidth="173.0" />
             <Button fx:id="botaoAtualiza" layoutX="29.0" layoutY="252.0" mnemonicParsing="false" onAction="#atualiza" text="Atualizar" />
             <Button fx:id="botaoDeletar" layoutX="110.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleta" text="Deletar" textFill="RED" />
             <TextField fx:id="telefoneFunc" layoutX="14.0" layoutY="126.0" prefHeight="25.0" prefWidth="173.0" />

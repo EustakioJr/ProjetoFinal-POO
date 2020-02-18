@@ -73,13 +73,16 @@ public class ControllerListaCliente {
             Cliente c = new Cliente();
 
             c.setCpf(clienteSelecionado.getCpf());
-            c.setNome(clienteSelecionado.getNome());
+            c.setNome(nomeCliente.getText());
             c.setEndereco(enderecoCliente.getText());
             c.setTelefone(telefoneCliente.getText());
             daoCliente.atualizar(c);
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+
+        limpaCampo();
+        carregaTabelaCompleta();
     }
 
     @FXML
@@ -90,6 +93,8 @@ public class ControllerListaCliente {
         }else{
             labelAviso.setText("PARA ACESSAR ESSA FUNÇÃO DEVE SER ADMINISTRADOR!");
         }
+        limpaCampo();
+        carregaTabelaCompleta();
     }
 
     @FXML
@@ -99,10 +104,10 @@ public class ControllerListaCliente {
         if (!campoNome.getText().isEmpty() || !campoCPF.getText().isEmpty()){
             sb.append(" WHERE");
 
-            if (!campoNome.getText().isEmpty()) sb.append(" a.nome = '"+ campoNome.getText()+"'");
+            if (!campoNome.getText().isEmpty()) sb.append(" c.nome = '"+ campoNome.getText()+"'");
             if (!campoCPF.getText().isEmpty()) sb.append(
                     ((!campoNome.getText().isEmpty())? " AND": "")
-                            +" a.dono.cpf = '"
+                            +" c.cpf = '"
                             + campoCPF.getText()
                             +"'"
             );

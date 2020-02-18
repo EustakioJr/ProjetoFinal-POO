@@ -34,10 +34,8 @@ public class DaoCliente {
 
         try {
 
-            Cliente c = em.find(Cliente.class, cliente.getCpf());
-
             em.getTransaction().begin();
-            em.merge(c);
+            em.merge(cliente);
             em.getTransaction().commit();
             resultado = true;
         } catch (Exception e) {

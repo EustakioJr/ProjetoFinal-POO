@@ -56,10 +56,8 @@ public class DaoConsulta {
 
         try {
 
-            Consulta c = em.find(Consulta.class, consulta.getId());
-
             em.getTransaction().begin();
-            em.merge(c);
+            em.merge(consulta);
             em.getTransaction().commit();
             resultado = true;
         } catch (Exception e) {

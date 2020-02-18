@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerListaConsulta">
     <Label layoutX="22.0" layoutY="44.0" text="Id do Animal:" />
     <TextField fx:id="campoNome" layoutX="95.0" layoutY="40.0" prefHeight="25.0" prefWidth="173.0" />
@@ -35,8 +35,7 @@
             </TableView>
         </AnchorPane>
     </SplitPane>
-    <ComboBox fx:id="campoAtendido" layoutX="392.0" layoutY="70.0" prefHeight="25.0" prefWidth="94.0" />
-    <Label layoutX="314.0" layoutY="74.0" text="Foi Atendido:" />
+    <Label layoutX="299.0" layoutY="74.0" text="Foi Atendido:" />
     <DatePicker fx:id="campoData" layoutX="120.0" layoutY="70.0" />
     <Label layoutX="275.0" layoutY="44.0" text="CRMV do Veterinario:" />
     <TextField fx:id="campoCrmv" layoutX="392.0" layoutY="40.0" prefHeight="25.0" prefWidth="191.0" />
@@ -48,4 +47,5 @@
             <Font size="15.0" />
         </font>
     </Label>
+   <ChoiceBox fx:id="campoAtendido" layoutX="372.0" layoutY="70.0" prefHeight="25.0" prefWidth="130.0" />
 </AnchorPane>

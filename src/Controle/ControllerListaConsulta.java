@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
+import Enum.FoiAtendido;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -72,7 +73,7 @@ public class ControllerListaConsulta {
     private TableColumn<Consulta, Boolean> atendidoTabela;
 
     @FXML
-    private ComboBox<?> campoAtendido;
+    private ChoiceBox<FoiAtendido> campoAtendido;
 
     @FXML
     private DatePicker campoData;
@@ -87,6 +88,7 @@ public class ControllerListaConsulta {
     private ObservableList<Consulta> observableListConsulta;
 
     public void initialize(){
+        campoAtendido.getItems().addAll(FoiAtendido.values());
         carregaTabelaCompleta();
 
         daoConsulta = new DaoConsulta();
@@ -118,6 +120,7 @@ public class ControllerListaConsulta {
 
     public void selectItemConsulta(Consulta consulta){
         if (consulta != null){
+            consultaSelecionada = consulta;
             dataConsulta.setText(String.valueOf(consulta.getData()));
             animalConsulta.setText(String.valueOf(consulta.getAnimal().getId()));
             vetConsulta.setText(String.valueOf(consulta.getVeterinario().getCrmv()));
@@ -140,8 +143,13 @@ public class ControllerListaConsulta {
     void atualiza(ActionEvent event) {
         resultado = UsuarioLogado.getInstance().isEhAdm();
         if (resultado){
-            Consulta c = consultaSelecionada;
+            Consulta c = new Consulta();
 
+            c.setId(consultaSelecionada.getId());
+            c.setData(consultaSelecionada.getData());
+            c.setMotivo(consultaSelecionada.getMotivo());
+            c.setAnimal(consultaSelecionada.getAnimal());
+            c.setVeterinario(consultaSelecionada.getVeterinario());
             c.setFoiAtendido(checkConsulta.isSelected());
 
             daoConsulta.atualizar(c);
@@ -182,9 +190,8 @@ public class ControllerListaConsulta {
             );
             if (campoAtendido.getValue() != null) sb.append(
                     ((!campoNome.getText().isEmpty() || !campoCrmv.getText().isEmpty() || campoData.getValue() != null)? " AND": "")
-                    +" c.foiAtentido = "
-                    + campoAtendido.getValue()
-                    +"'"
+                    +" c.foiAtendido = "
+                    + (campoAtendido.getValue() == FoiAtendido.ATENDIDO)
             );
 
         }
@@ -195,11 +202,13 @@ public class ControllerListaConsulta {
 
     @FXML
     void irHome(ActionEvent event) {
+        limpaCampos();
         Visao.App.trocaTela("home");
     }
 
     @FXML
     void logout(ActionEvent event) {
+        limpaCampos();
         Visao.App.trocaTela("inicio");
         UsuarioLogado.getInstance().setEhAdm(false);
     }

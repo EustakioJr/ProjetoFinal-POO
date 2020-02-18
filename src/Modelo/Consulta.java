@@ -82,4 +82,16 @@ public class Consulta {
     public String getCrmvVet(){
         return veterinario.getCrmv();
     }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "id=" + id +
+                ", data=" + data +
+                ", motivo='" + motivo + '\'' +
+                ", animal=" + animal +
+                ", veterinario=" + veterinario +
+                ", foiAtendido=" + foiAtendido +
+                '}';
+    }
 }
