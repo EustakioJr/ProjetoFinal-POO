@@ -8,15 +8,30 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerTelaCadastro">
     <Button fx:id="botaoVet" layoutX="152.0" layoutY="199.0" mnemonicParsing="false" onAction="#irCadastroVet" prefHeight="25.0" prefWidth="106.0" text="Veterinario" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="152.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="152.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/veterianrio.png" />
+      </image></ImageView>
     <Button fx:id="botaoRecep" layoutX="342.0" layoutY="199.0" mnemonicParsing="false" onAction="#irCadastroRecep" prefHeight="25.0" prefWidth="106.0" text="Recepcionista" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="342.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="342.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/recepcionista.png" />
+      </image></ImageView>
     <Button fx:id="botaoClientes" layoutX="99.0" layoutY="352.0" mnemonicParsing="false" onAction="#irCadastroCliente" prefHeight="25.0" prefWidth="106.0" text="Clientes" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/user.png" />
+      </image></ImageView>
     <Button fx:id="botaoAnimais" layoutX="247.0" layoutY="352.0" mnemonicParsing="false" onAction="#irCadastroAnimal" prefHeight="25.0" prefWidth="106.0" text="Animais" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/animal_add.png" />
+      </image></ImageView>
     <Button fx:id="botaoConsultas" layoutX="395.0" layoutY="352.0" mnemonicParsing="false" onAction="#irCadastroConsulta" prefHeight="25.0" prefWidth="106.0" text="Consultas" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/consulta.png" />
+      </image></ImageView>
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="40.0" prefHeight="31.0" prefWidth="341.0" text="Selecione a opção que deseja cadastrar:">
         <font>
           <Font size="19.0" />

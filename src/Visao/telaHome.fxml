@@ -3,22 +3,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.shape.Line?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ControllerTelaHome">
     <Button fx:id="botaoCadastrar" layoutX="99.0" layoutY="176.0" mnemonicParsing="false" onAction="#irCadastro" prefHeight="25.0" prefWidth="106.0" text="Cadastrar" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/animal_add.png" />
+      </image></ImageView>
     <Button fx:id="botaoFuncionarios" layoutX="247.0" layoutY="176.0" mnemonicParsing="false" onAction="#irFuncionario" prefHeight="25.0" prefWidth="106.0" text="Recepcionistas" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/recepcionista.png" />
+      </image></ImageView>
     <Button fx:id="botaoClientes" layoutX="99.0" layoutY="329.0" mnemonicParsing="false" onAction="#irCliente" prefHeight="25.0" prefWidth="106.0" text="Clientes" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="99.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/user.png" />
+      </image></ImageView>
     <Button fx:id="botaoAnimais" layoutX="247.0" layoutY="329.0" mnemonicParsing="false" onAction="#irAnimal" prefHeight="25.0" prefWidth="106.0" text="Animais" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="247.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/animal.png" />
+      </image></ImageView>
     <Button fx:id="botaoConsultas" layoutX="395.0" layoutY="329.0" mnemonicParsing="false" onAction="#irConsulta" prefHeight="25.0" prefWidth="106.0" text="Consultas" />
-    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/consulta.png" />
+      </image></ImageView>
    <Button fx:id="botaoVet" layoutX="395.0" layoutY="176.0" mnemonicParsing="false" onAction="#irVet" prefHeight="25.0" prefWidth="106.0" text="Veterinarios" />
-   <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fitHeight="101.0" fitWidth="106.0" layoutX="395.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../imagens/veterianrio_list.png" />
+      </image></ImageView>
     <Button fx:id="botaoHome" layoutX="9.0" layoutY="5.0" mnemonicParsing="false" onAction="#irHome" prefHeight="21.0" prefWidth="49.0" text="Home" />
     <Line endX="507.0" layoutX="93.0" layoutY="34.0" startX="-100.0" />
     <Button fx:id="botaoLogout" layoutX="64.0" layoutY="5.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="57.0" text="Logout" />
+   <Label layoutX="14.0" layoutY="40.0" prefHeight="32.0" prefWidth="119.0" text="Pagina Home">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
 </AnchorPane>

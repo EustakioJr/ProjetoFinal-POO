@@ -1,6 +1,7 @@
 package Controle;
 
 import Dao.DaoConsulta;
+import Excecao.DataInvalida;
 import Modelo.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,9 @@ import javafx.scene.control.Label;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ControllerCadastroConsulta {
 
@@ -47,13 +50,19 @@ public class ControllerCadastroConsulta {
     }
 
     @FXML
-    void cadastrar(ActionEvent event) {
+    void cadastrar(ActionEvent event) throws DataInvalida {
         EntityManager em = Persistence.createEntityManagerFactory("ProjetoPoo").createEntityManager();
         em.getTransaction().begin();
 
         Boolean resultado;
         Integer idAnimal = Integer.parseInt(campoAnimal.getText());
         Consulta novo = new Consulta();
+
+        System.out.println(campoData.getValue().compareTo(LocalDate.now()));
+        if (campoData.getValue().compareTo(LocalDate.now()) < 0){
+            labelAviso.setText("Data Invalida");
+            throw new DataInvalida("Data Inferior a atual.");
+        }
         novo.setData(Date.valueOf(campoData.getValue()));
         novo.setMotivo(campoMotivo.getText());
         novo.setAnimal(em.createQuery("SELECT a FROM Animal a WHERE a.id = :animal", Animal.class)
